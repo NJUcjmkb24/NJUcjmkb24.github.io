@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="The Redefine Team">
+    
+    <!-- Completely eliminate flash of wrong theme -->
+    <script>
+        (function() {
+            const THEME_KEY = "REDEFINE-THEME-STATUS";
+            const DARK = "dark", LIGHT = "light";
+            
+            // Get preferred theme
+            function getTheme() {
+                try {
+                    const saved = localStorage.getItem(THEME_KEY);
+                    if (saved) {
+                        const { isDark } = JSON.parse(saved);
+                        return isDark ? DARK : LIGHT;
+                    }
+                } catch (e) {}
+                
+                return matchMedia("(prefers-color-scheme: dark)").matches ? DARK : LIGHT;
+            }
+            
+            // Apply theme to document
+            function applyTheme(theme) {
+                const isDark = theme === DARK;
+                const root = document.documentElement;
+                
+                // Set data attribute for CSS variables
+                root.setAttribute("data-theme", theme);
+                
+                // Set classes for compatibility
+                root.classList.add(theme);
+                root.classList.remove(isDark ? LIGHT : DARK);
+                root.style.colorScheme = theme;
+            }
+            
+            // Initial application
+            const theme = getTheme();
+            applyTheme(theme);
+            
+            // Listen for system preference changes
+            matchMedia("(prefers-color-scheme: dark)").addEventListener("change", ({ matches }) => {
+                // Only update if using system preference (no localStorage entry)
+                if (!localStorage.getItem(THEME_KEY)) {
+                    applyTheme(matches ? DARK : LIGHT);
+                }
+            });
+            
+            // Set body classes once DOM is ready
+            if (document.readyState !== "loading") {
+                document.body.classList.add(theme + "-mode");
+            } else {
+                document.addEventListener("DOMContentLoaded", () => {
+                    document.body.classList.add(theme + "-mode");
+                    document.body.classList.remove((theme === DARK ? LIGHT : DARK) + "-mode");
+                });
+            }
+        })();
+    </script>
+    
+    <!-- Critical CSS to prevent flash -->
+    <style>
+        :root[data-theme="dark"] {
+            --background-color: #202124;
+            --background-color-transparent: rgba(32, 33, 36, 0.6);
+            --second-background-color: #2d2e32;
+            --third-background-color: #34353a;
+            --third-background-color-transparent: rgba(32, 33, 36, 0.6);
+            --primary-color: #0066CC;
+            --first-text-color: #ffffff;
+            --second-text-color: #eeeeee;
+            --third-text-color: #bebec6;
+            --fourth-text-color: #999999;
+            --default-text-color: #bebec6;
+            --invert-text-color: #373D3F;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --selection-color: #0066CC;
+            --shadow-color-1: rgba(255, 255, 255, 0.08);
+            --shadow-color-2: rgba(255, 255, 255, 0.05);
+        }
+        
+        :root[data-theme="light"] {
+            --background-color: #fff;
+            --background-color-transparent: rgba(255, 255, 255, 0.6);
+            --second-background-color: #f8f8f8;
+            --third-background-color: #f2f2f2;
+            --third-background-color-transparent: rgba(241, 241, 241, 0.6);
+            --primary-color: #0066CC;
+            --first-text-color: #16171a;
+            --second-text-color: #2f3037;
+            --third-text-color: #5e5e5e;
+            --fourth-text-color: #eeeeee;
+            --default-text-color: #373D3F;
+            --invert-text-color: #bebec6;
+            --border-color: rgba(0, 0, 0, 0.08);
+            --selection-color: #0066CC;
+            --shadow-color-1: rgba(0, 0, 0, 0.08);
+            --shadow-color-2: rgba(0, 0, 0, 0.05);
+        }
+        
+        body {
+            background-color: var(--background-color);
+            color: var(--default-text-color);
+        }
+        
+        /* Apply body classes as soon as DOM is ready */
+        :root[data-theme="dark"] body {
+            background-color: var(--background-color);
+            color: var(--default-text-color);
+        }
+    </style>
+    
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/publications/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+    
+    
+        
+        <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Publications">
+<meta property="og:url" content="http://example.com/publications/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/redefine-og.webp">
+<meta property="article:published_time" content="2026-08-09T04:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-09T03:15:34.580Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            Publications | JINGMING CHEN, Ph.D. PHYSICS
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/css/build/tailwind.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"en"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"side_tools":{"gear_rotation":true,"auto_expand":false},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"Hexo Theme Redefine, Redefine Your Hexo Journey."},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Welcome to Jingming Chen's Page","subtitle":{"text":[],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"11.4.1"}},"version":"2.8.5","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Notes":{"path":"/categories/notes"},"Researches":{"path":"/categories/researches"},"Publications":{"path":"/publications/"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+
+<body>
+	<div class="progress-bar-container">
+	
+
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
+</div>
+
+<main class="page-container" id="swup">
+
+	
+
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                JINGMING CHEN, Ph.D. PHYSICS
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/categories/notes"
+                                        >
+                                    
+                                    NOTES
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/categories/researches"
+                                        >
+                                    
+                                    RESEARCHES
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="active"
+                                   href="/publications/"
+                                        >
+                                    
+                                    PUBLICATIONS
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/categories/notes"
+                        >
+                            <span>
+                                NOTES
+                            </span>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/categories/researches"
+                        >
+                            <span>
+                                RESEARCHES
+                            </span>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                           href="/publications/"
+                        >
+                            <span>
+                                PUBLICATIONS
+                            </span>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">1</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">1</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+		</div>
+
+		<div class="main-content-body transition-fade-up">
+			
+
+			<div class="main-content">
+				<div class="page-template-container">
+	
+
+	
+
+	<div class="page-template-content markdown-body">
+		
+		<h1>Publications</h1>
+		
+
+		<style>
+.publication-page {
+  --publication-accent: #f78736;
+  --publication-accent-soft: rgba(247, 135, 54, 0.12);
+  --publication-rule: rgba(247, 135, 54, 0.48);
+}
+
+.page-template-content > h1 {
+  display: none;
+}
+
+.publication-intro {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 0 0 34px;
+  padding: 22px 26px;
+  color: #fff;
+  background: linear-gradient(120deg, #3f69b1 0%, #4f78c7 100%);
+  border-radius: 10px;
+}
+
+.publication-intro h1 {
+  margin: 0 0 8px !important;
+  color: #fff;
+  font-size: 2rem;
+  line-height: 1.15;
+}
+
+.publication-intro p {
+  margin: 4px 0;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 0.95rem;
+}
+
+.publication-count {
+  flex: 0 0 auto;
+  min-width: 96px;
+  text-align: center;
+}
+
+.publication-count strong {
+  display: block;
+  color: #fff;
+  font-size: 2.2rem;
+  line-height: 1;
+}
+
+.publication-count span {
+  display: block;
+  margin-top: 6px;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.publication-layout {
+  display: grid;
+  grid-template-columns: 132px minmax(0, 1fr);
+  gap: 38px;
+  align-items: start;
+}
+
+.publication-years {
+  position: sticky;
+  top: 92px;
+  margin: 0;
+  padding: 18px 0;
+  list-style: none !important;
+  background: var(--background-color);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  box-shadow: var(--redefine-box-shadow-flat);
+}
+
+.publication-years li {
+  margin: 0;
+  list-style: none !important;
+}
+
+.publication-years li::marker {
+  content: "";
+}
+
+.publication-years a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 20px;
+  color: var(--default-text-color) !important;
+  font-size: 1.12rem;
+  font-weight: 700;
+  text-decoration: none !important;
+}
+
+.publication-years a::before {
+  width: 8px;
+  height: 8px;
+  content: "";
+  background: var(--publication-accent);
+  border-radius: 2px;
+}
+
+.publication-years a:hover {
+  color: var(--publication-accent) !important;
+  background: var(--publication-accent-soft);
+}
+
+.publication-year {
+  margin-bottom: 44px;
+  scroll-margin-top: 90px;
+}
+
+.publication-year:last-child {
+  margin-bottom: 0;
+}
+
+.publication-year h2 {
+  position: relative;
+  margin: 0 0 28px !important;
+  padding: 13px 18px 13px 28px;
+  font-size: 1.7rem;
+  line-height: 1.25;
+  border-bottom: 1px solid var(--publication-rule) !important;
+}
+
+.publication-year h2::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 10px;
+  content: "";
+  background: var(--publication-accent);
+  border-radius: 3px 3px 0 0;
+}
+
+.publication-item {
+  margin: 0 0 30px;
+  padding: 0 4px 0 0;
+}
+
+.publication-item:last-child {
+  margin-bottom: 0;
+}
+
+.publication-authors,
+.publication-title,
+.publication-journal {
+  margin: 0 !important;
+}
+
+.publication-authors {
+  color: var(--default-text-color);
+  font-size: 0.98rem;
+  font-style: italic;
+  line-height: 1.75;
+}
+
+.publication-number {
+  margin-right: 5px;
+  font-style: normal;
+  font-weight: 800;
+}
+
+.publication-me {
+  font-weight: 800;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.publication-title {
+  margin-top: 4px !important;
+  color: var(--default-text-color);
+  font-size: 1.05rem;
+  font-weight: 800;
+  line-height: 1.55;
+}
+
+.publication-journal {
+  margin-top: 7px !important;
+  color: var(--publication-accent);
+  line-height: 1.65;
+}
+
+.publication-journal em {
+  color: var(--publication-accent);
+  font-style: normal;
+}
+
+.publication-journal a {
+  display: inline-block;
+  margin-left: 5px;
+  color: var(--publication-accent) !important;
+  font-weight: 650;
+  text-decoration: none !important;
+}
+
+.publication-journal a:hover {
+  text-decoration: underline !important;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 760px) {
+  .publication-intro {
+    align-items: flex-start;
+    padding: 19px 20px;
+  }
+
+  .publication-intro h1 {
+    font-size: 1.65rem;
+  }
+
+  .publication-count {
+    display: none;
+  }
+
+  .publication-layout {
+    display: block;
+  }
+
+  .publication-years {
+    position: static;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    margin-bottom: 30px;
+    padding: 8px;
+    overflow: visible;
+  }
+
+  .publication-years a {
+    justify-content: center;
+    gap: 5px;
+    padding: 8px 2px;
+    font-size: 0.86rem;
+    white-space: nowrap;
+  }
+
+  .publication-years a::before {
+    width: 6px;
+    height: 6px;
+  }
+
+  .publication-year h2 {
+    font-size: 1.42rem;
+  }
+
+  .publication-authors {
+    font-size: 0.92rem;
+  }
+}
+</style>
+
+
+<div class="publication-page">
+  <header class="publication-intro">
+    <div>
+      <h1>Publications</h1>
+      <p><sup>#</sup> Contributed equally &nbsp;&nbsp; <sup>&dagger;</sup> Corresponding author</p>
+    </div>
+    <div class="publication-count"><strong>8</strong><span>Publications</span></div>
+  </header>
+
+  <div class="publication-layout">
+    <nav aria-label="Publication years">
+      <ul class="publication-years">
+        <li><a href="#year-2026">2026</a></li>
+        <li><a href="#year-2025">2025</a></li>
+        <li><a href="#year-2024">2024</a></li>
+        <li><a href="#year-2020">2020</a></li>
+      </ul>
+    </nav>
+
+    <main class="publication-list">
+      <section class="publication-year" id="year-2026">
+        <h2>2026 Publications</h2>
+
+        <article class="publication-item">
+          <p class="publication-authors"><span class="publication-number">8.</span> Xiang Xi<sup>#</sup>, Linyun Yang<sup>#</sup>, Ziyao Wang<sup>#</sup>, Bei Yan<sup>#</sup>, <span class="publication-me">Jing-Ming Chen</span><sup>#</sup>, Yan Meng, Zhen-Xiao Zhu, Tao Xiao, Min-Qi Cheng, Zebin Zhu, Gui-Geng Liu, Hongcheng Wang, Xiankai Sun, and Zhen Gao<sup>&dagger;</sup></p>
+          <p class="publication-title">“Photonic arbitrary Chern vectors”</p>
+          <p class="publication-journal"><em>Science Advances 12, eaef3784 (2026)</em> <a class="link"   target="_blank" rel="noopener" href="https://doi.org/10.1126/sciadv.aef3784" >[DOI]<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> <a href="/publications/papers/2026-sci-adv-photonic-arbitrary-chern-vectors.pdf">[PDF]</a> <a href="/publications/papers/2026-sci-adv-photonic-arbitrary-chern-vectors-sm.pdf">[Supplementary]</a></p>
+        </article>
+
+        <article class="publication-item">
+          <p class="publication-authors"><span class="publication-number">7.</span> Liren Chen<sup>#</sup>, Jinglin Liu<sup>#</sup>, <span class="publication-me">Jingming Chen</span><sup>#&dagger;</sup>, Bolun Huang<sup>&dagger;</sup>, and Zhen Gao<sup>&dagger;</sup></p>
+          <p class="publication-title">“Higher-order topological type-II hyperbolic lattices”</p>
+          <p class="publication-journal"><em>Physical Review B 114, 034107 (2026)</em> <a class="link"   target="_blank" rel="noopener" href="https://doi.org/10.1103/crnd-nq54" >[DOI]<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> <a href="/publications/papers/2026-prb-higher-order-topological-type-ii-hyperbolic-lattices.pdf">[PDF]</a> <a href="/publications/papers/2026-prb-higher-order-topological-type-ii-hyperbolic-lattices-sm.pdf">[Supplementary]</a></p>
+        </article>
+
+        <article class="publication-item">
+          <p class="publication-authors"><span class="publication-number">6.</span> <span class="publication-me">Jingming Chen</span><sup>#</sup>, Zebin Zhu<sup>#</sup>, Minqi Cheng<sup>#</sup>, Linyun Yang, Yuxin Zhong, and Zhen Gao<sup>&dagger;</sup></p>
+          <p class="publication-title">“Space and space-time topologies in a type-II hyperbolic lattice”</p>
+          <p class="publication-journal"><em>Nature Communications 17, 4142 (2026)</em> <a class="link"   target="_blank" rel="noopener" href="https://doi.org/10.1038/s41467-026-70706-7" >[DOI]<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> <a href="/publications/papers/2026-nat-commun-space-and-space-time-topologies.pdf">[PDF]</a> <a href="/publications/papers/2026-nat-commun-space-and-space-time-topologies-sm.pdf">[Supplementary]</a></p>
+        </article>
+
+        <article class="publication-item">
+          <p class="publication-authors"><span class="publication-number">5.</span> Kailun Wang<sup>#</sup>, <span class="publication-me">Jingming Chen</span><sup>#</sup>, Yue Shen, Xiang Li<sup>&dagger;</sup>, Zhen Gao<sup>&dagger;</sup>, and Ying Wu<sup>&dagger;</sup></p>
+          <p class="publication-title">“Type-II hyperbolic lattices for elastic wave manipulations”</p>
+          <p class="publication-journal"><em>International Journal of Engineering Science 224, 104531 (2026)</em> <a class="link"   target="_blank" rel="noopener" href="https://doi.org/10.1016/j.ijengsci.2026.104531" >[DOI]<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> <a href="/publications/papers/2026-ijes-type-ii-hyperbolic-lattices-elastic-waves.pdf">[PDF]</a></p>
+        </article>
+      </section>
+
+      <section class="publication-year" id="year-2025">
+        <h2>2025 Publications</h2>
+
+        <article class="publication-item">
+          <p class="publication-authors"><span class="publication-number">4.</span> Minqi Cheng<sup>#</sup>, <span class="publication-me">Jingming Chen</span><sup>#</sup>, Linyun Yang<sup>&dagger;</sup>, and Zhen Gao<sup>&dagger;</sup></p>
+          <p class="publication-title">“Topological sound in nonreciprocal active-liquid networks”</p>
+          <p class="publication-journal"><em>Physical Review Research 7, 043007 (2025)</em> <a class="link"   target="_blank" rel="noopener" href="https://doi.org/10.1103/rvkr-7mr2" >[DOI]<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> <a href="/publications/papers/2025-prr-topological-sound-active-liquid-networks.pdf">[PDF]</a> <a href="/publications/papers/2025-prr-topological-sound-active-liquid-networks-sm.pdf">[Supplementary]</a></p>
+        </article>
+
+        <article class="publication-item">
+          <p class="publication-authors"><span class="publication-number">3.</span> <span class="publication-me">Jingming Chen</span>, Linyun Yang<sup>&dagger;</sup>, and Zhen Gao<sup>&dagger;</sup></p>
+          <p class="publication-title">“Dynamic transfer of chiral edge states in topological type-II hyperbolic lattices”</p>
+          <p class="publication-journal"><em>Communications Physics 8, 97 (2025)</em> <a class="link"   target="_blank" rel="noopener" href="https://doi.org/10.1038/s42005-025-01990-w" >[DOI]<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> <a href="/publications/papers/2025-commun-phys-dynamic-transfer-chiral-edge-states.pdf">[PDF]</a> <a href="/publications/papers/2025-commun-phys-dynamic-transfer-chiral-edge-states-sm.pdf">[Supplementary]</a></p>
+        </article>
+      </section>
+
+      <section class="publication-year" id="year-2024">
+        <h2>2024 Publications</h2>
+
+        <article class="publication-item">
+          <p class="publication-authors"><span class="publication-number">2.</span> <span class="publication-me">Jingming Chen</span>, Qinnan Xie, Jingjing Zhang<sup>&dagger;</sup>, Zhuo Li, Tie Jun Cui<sup>&dagger;</sup>, and Yu Luo<sup>&dagger;</sup></p>
+          <p class="publication-title">“Coherent-resonance enhancement of sensing at the exceptional points”</p>
+          <p class="publication-journal"><em>Advanced Optical Materials 12, 2302268 (2024)</em> <a class="link"   target="_blank" rel="noopener" href="https://doi.org/10.1002/adom.202302268" >[DOI]<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> <a href="/publications/papers/2024-aom-coherent-resonance-enhancement-sensing.pdf">[PDF]</a> <a href="/publications/papers/2024-aom-coherent-resonance-enhancement-sensing-sm.pdf">[Supplementary]</a></p>
+        </article>
+      </section>
+
+      <section class="publication-year" id="year-2020">
+        <h2>2020 Publications</h2>
+
+        <article class="publication-item">
+          <p class="publication-authors"><span class="publication-number">1.</span> <span class="publication-me">Jingming Chen</span><sup>&dagger;</sup>, Run-Qiu Yang, Shining Zhu, and Hui Liu<sup>&dagger;</sup></p>
+          <p class="publication-title">“Optical analogy of gravitational collapse and quantum tunneling of the event horizon”</p>
+          <p class="publication-journal"><em>Journal of Optics 22, 035605 (2020)</em> <a class="link"   target="_blank" rel="noopener" href="https://doi.org/10.1088/2040-8986/ab6f49" >[DOI]<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> <a href="/publications/papers/2020-jopt-optical-analogy-gravitational-collapse.pdf">[PDF]</a></p>
+        </article>
+      </section>
+    </main>
+  </div>
+</div>
+
+
+	</div>
+
+	<div class="page-template-comments">
+		
+	</div>
+</div>
+
+<div class="paginator">
+	
+</div>
+  
+			</div>
+
+			
+		</div>
+
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2026&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">The Redefine Team</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        1 posts in total
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.5</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+		</div>
+	</div>
+
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container">
+	<img src="">
+</div>
+
+	
+
+</main>
+
+
+
+<script src="/js/build/libs/Swup.min.js"></script>
+
+<script src="/js/build/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/build/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+	
+<script src="/js/build/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/build/utils.js" type="module"></script>
+
+<script src="/js/build/main.js" type="module"></script>
+
+<script src="/js/build/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/build/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/build/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/build/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
+    
+<script src="/js/build/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/tools/runtime.js"></script>
+
+    
+<script src="/js/build/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/build/libs/Typed.min.js"></script>
+
+  
+<script src="/js/build/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+    
+<script src="/js/build/libs/anime.min.js"></script>
+
+
+
+
+
+    
+<script src="/js/build/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/js/build/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/build/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+
+	
+</body>
+
+</html>
