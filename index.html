@@ -540,42 +540,56 @@
     text-align: justify;
   }
 
-  .academic-research-list {
+  .academic-cv-heading {
+    margin-bottom: 24px !important;
+    padding-bottom: 6px;
+    font-size: 1.55rem !important;
+    border-bottom: 5px solid transparent;
+    border-image: linear-gradient(90deg, #bfd879 0%, rgba(191, 216, 121, 0.08) 92%) 1;
+  }
+
+  .academic-cv-list {
     display: flex;
     flex-direction: column;
-    gap: 26px;
+    gap: 18px;
   }
 
-  .academic-research-lead {
+  .academic-cv-item {
     display: grid;
-    grid-template-columns: 165px minmax(0, 1fr);
-    gap: 20px;
-    align-items: baseline;
+    grid-template-columns: 165px 18px minmax(0, 1fr);
+    gap: 18px;
+    align-items: start;
   }
 
-  .academic-research-date,
-  .academic-research-degree,
-  .academic-research-affiliation {
+  .academic-cv-date,
+  .academic-cv-details {
     color: var(--first-text-color);
-    font-size: 1.08rem;
-    line-height: 1.65;
+    font-size: 1rem;
+    line-height: 1.6;
   }
 
-  .academic-research-date {
+  .academic-cv-date {
+    padding-top: 2px;
     white-space: nowrap;
   }
 
-  .academic-research-degree strong {
+  .academic-cv-marker {
+    display: block;
+    width: 14px;
+    height: 21px;
+    margin-top: 3px;
+    background: #a31f4b;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 76%, 0 100%);
+  }
+
+  .academic-cv-details strong {
     font-weight: 750;
   }
 
-  .academic-research-affiliation {
+  .academic-cv-details br {
     display: block;
-    margin-top: 8px;
-  }
-
-  .academic-research-affiliation + .academic-research-affiliation {
-    margin-top: 2px;
+    content: "";
+    margin-top: 3px;
   }
 
   .academic-featured h2 {
@@ -651,22 +665,38 @@
       text-align: left;
     }
 
-    .academic-research-list {
+    .academic-cv-heading {
+      margin-bottom: 20px !important;
+      font-size: 1.38rem !important;
+    }
+
+    .academic-cv-list {
       gap: 20px;
     }
 
-    .academic-research-lead {
-      display: block;
+    .academic-cv-item {
+      grid-template-columns: 16px minmax(0, 1fr);
+      gap: 5px 12px;
     }
 
-    .academic-research-date {
+    .academic-cv-date {
       display: block;
-      margin-bottom: 2px;
+      grid-column: 1 / -1;
+      padding: 0;
     }
 
-    .academic-research-date,
-    .academic-research-degree,
-    .academic-research-affiliation {
+    .academic-cv-marker {
+      grid-column: 1;
+      width: 12px;
+      height: 19px;
+    }
+
+    .academic-cv-details {
+      grid-column: 2;
+    }
+
+    .academic-cv-date,
+    .academic-cv-details {
       font-size: 0.96rem;
       line-height: 1.6;
     }
@@ -704,31 +734,24 @@
 
   <main class="academic-about">
     <section aria-labelledby="research-experience-heading">
-      <h2 id="research-experience-heading">Research experience</h2>
-      <div class="academic-research-list">
-        <div class="academic-research-item">
-          <div class="academic-research-lead">
-            <time class="academic-research-date">09/2017-06/2020</time>
-            <div class="academic-research-degree"><strong>MSc</strong> in <strong>Optical Engineering</strong>,</div>
-          </div>
-          <span class="academic-research-affiliation">Department of Physics, Nanjing University (NJU) (Supervisor: Prof. Hui Liu).</span>
+      <h2 class="academic-cv-heading" id="research-experience-heading">Research experience</h2>
+      <div class="academic-cv-list">
+        <div class="academic-cv-item">
+          <time class="academic-cv-date">09/2017-06/2020</time>
+          <span class="academic-cv-marker" aria-hidden="true"></span>
+          <div class="academic-cv-details"><strong>MSc</strong> in <strong>Optical Engineering</strong>,<br> Department of Physics, Nanjing University (NJU) (Supervisor: Prof. Hui Liu).</div>
         </div>
 
-        <div class="academic-research-item">
-          <div class="academic-research-lead">
-            <time class="academic-research-date">09/2022-06/2026</time>
-            <div class="academic-research-degree"><strong>PhD</strong> in <strong>Physics</strong>,</div>
-          </div>
-          <span class="academic-research-affiliation">Department of Electronic and Electrical Engineering, Southern University of Science and Technology (SUSTech) (Supervisor: Prof. Zhen Gao).</span>
+        <div class="academic-cv-item">
+          <time class="academic-cv-date">09/2022-06/2026</time>
+          <span class="academic-cv-marker" aria-hidden="true"></span>
+          <div class="academic-cv-details"><strong>PhD</strong> in <strong>Physics</strong>,<br> Department of Electronic and Electrical Engineering, Southern University of Science and Technology (SUSTech) (Supervisor: Prof. Zhen Gao).</div>
         </div>
 
-        <div class="academic-research-item">
-          <div class="academic-research-lead">
-            <time class="academic-research-date">066/2026-now</time>
-            <div class="academic-research-degree"><strong>Research follow</strong>,</div>
-          </div>
-          <span class="academic-research-affiliation">Department of Physics/Jockey Club Institute for Advanced Study (IAS),</span>
-          <span class="academic-research-affiliation">The Hong Kong University of Science and Technology (HKUST) (Supervisor: Prof. Che Ting Chan).</span>
+        <div class="academic-cv-item">
+          <time class="academic-cv-date">066/2026-now</time>
+          <span class="academic-cv-marker" aria-hidden="true"></span>
+          <div class="academic-cv-details"><strong>Research follow</strong>,<br> Department of Physics/Jockey Club Institute for Advanced Study (IAS),<br> The Hong Kong University of Science and Technology (HKUST) (Supervisor: Prof. Che Ting Chan).</div>
         </div>
       </div>
     </section>
