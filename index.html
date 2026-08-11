@@ -540,6 +540,63 @@
     text-align: justify;
   }
 
+  .academic-cv-section + .academic-cv-section {
+    margin-top: 34px;
+  }
+
+  .academic-cv-heading {
+    margin: 0 0 22px;
+    padding: 0 0 5px;
+    color: var(--first-text-color);
+    font-size: 1.45rem;
+    font-weight: 750;
+    line-height: 1.25;
+    border-bottom: 5px solid transparent;
+    border-image: linear-gradient(90deg, #bfd879 0%, rgba(191, 216, 121, 0.08) 92%) 1;
+  }
+
+  .academic-cv-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .academic-cv-item {
+    display: grid;
+    grid-template-columns: 165px 18px minmax(0, 1fr);
+    gap: 18px;
+    align-items: start;
+  }
+
+  .academic-cv-date {
+    padding-top: 2px;
+    color: var(--first-text-color);
+    font-size: 0.98rem;
+    line-height: 1.55;
+    white-space: nowrap;
+  }
+
+  .academic-cv-marker {
+    display: block;
+    width: 14px;
+    height: 21px;
+    margin-top: 3px;
+    background: #a31f4b;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 76%, 0 100%);
+  }
+
+  .academic-cv-details {
+    color: var(--second-text-color);
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+
+  .academic-cv-details strong {
+    color: var(--first-text-color);
+    font-size: 1.06rem;
+    font-weight: 750;
+  }
+
   .academic-featured h2 {
     margin-bottom: 22px;
     font-size: 1.48rem;
@@ -613,6 +670,38 @@
       text-align: left;
     }
 
+    .academic-cv-heading {
+      margin-bottom: 18px;
+      font-size: 1.3rem;
+    }
+
+    .academic-cv-list {
+      gap: 20px;
+    }
+
+    .academic-cv-item {
+      grid-template-columns: 16px minmax(0, 1fr);
+      gap: 5px 12px;
+    }
+
+    .academic-cv-date {
+      grid-column: 1 / -1;
+      padding: 0;
+      font-size: 0.9rem;
+    }
+
+    .academic-cv-marker {
+      grid-column: 1;
+      width: 12px;
+      height: 19px;
+    }
+
+    .academic-cv-details {
+      grid-column: 2;
+      font-size: 0.96rem;
+      line-height: 1.6;
+    }
+
     .academic-featured h2 {
       font-size: 1.38rem;
     }
@@ -643,8 +732,32 @@
   <main class="academic-about">
     <section aria-labelledby="about-me-heading">
       <h2 id="about-me-heading">About me</h2>
-      <p>I am currently working as a Research Fellow in the group of Prof. Che Ting Chan at the Department of Physics and the Jockey Club Institute for Advanced Study (IAS), Hong Kong University of Science and Technology (HKUST). I earned my Ph.D. in Physics from Southern University of Science and Technology, Shenzhen, China.</p>
-      <p>My research focuses on classical-wave physics, ranging from metamaterials and topological physics to non-Hermitian physics and analog gravity.</p>
+      <div class="academic-cv-section">
+        <h3 class="academic-cv-heading">Employment History</h3>
+        <div class="academic-cv-list">
+          <div class="academic-cv-item">
+            <time class="academic-cv-date">06/2026&ndash;Present</time>
+            <span class="academic-cv-marker" aria-hidden="true"></span>
+            <div class="academic-cv-details"><strong>Research Fellow</strong>, Department of Physics and the Jockey Club Institute for Advanced Study (IAS), The Hong Kong University of Science and Technology (Supervisor: Prof. Che Ting Chan).</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="academic-cv-section">
+        <h3 class="academic-cv-heading">Education</h3>
+        <div class="academic-cv-list">
+          <div class="academic-cv-item">
+            <time class="academic-cv-date">09/2022&ndash;06/2026</time>
+            <span class="academic-cv-marker" aria-hidden="true"></span>
+            <div class="academic-cv-details"><strong>PhD in Physics</strong>, Department of Electronic and Electrical Engineering, Southern University of Science and Technology (Supervisor: Prof. Zhen Gao).</div>
+          </div>
+          <div class="academic-cv-item">
+            <time class="academic-cv-date">09/2017&ndash;06/2020</time>
+            <span class="academic-cv-marker" aria-hidden="true"></span>
+            <div class="academic-cv-details"><strong>MSc in Optical Engineering</strong>, Department of Physics, Nanjing University (Supervisor: Prof. Hui Liu).</div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section class="academic-featured" aria-labelledby="featured-publications-heading">
